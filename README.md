@@ -24,7 +24,7 @@ This makes it able to:
 
 No installation needed, just include the file in your javascript project!
 
-:alert: Please note that the file IS NOT uglyfied! You will have to use your own parser to do that!
+:warning: Please note that the file IS NOT uglyfied! You will have to use your own parser to do that!
 
 # Functions
 
