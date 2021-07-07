@@ -1,4 +1,4 @@
-# Time.cc
+# Time.js
 
 Time.js is a powerful time object library for Javascript.
 
