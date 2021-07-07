@@ -1,4 +1,4 @@
-class Time
+export class Time
 	{
 		constructor()
 			{
@@ -75,9 +75,20 @@ class Time
 				this.year=t.getFullYear();
 			return this;
 			}
+		fromString(str)
+			{
+				var T=str.split(';');	
+				this.weekday=T[0];
+				this.day=T[1];
+				this.month=T[2];
+				this.year=T[3];
+				this.hour=T[4];
+				this.minute=T[5];
+				this.second=T[6];
+			}
 		toString()
 			{
-					var DATE;
+					var DATE="";
 					DATE+=this.weekday+";";
 					DATE+=this.day+";";
 					DATE+=this.month+";";
@@ -87,34 +98,56 @@ class Time
 					DATE+=this.second+";";
 			return DATE;
 			}
-		DatetoStringf(format)
+		toStringf(format,time_format,week_day_flag)
 			{
-					var DATE;
-					var argc=strlen(format);
-					if((argc<4||argc>5))
+				var DATE="";
+				if(week_day_flag)
+					DATE+=this._week_days[this.weekday]+" ";
+				var argc=format.length;
+				if(argc<2)
+					return new Error("At least 2 parameters required!");
+				var delim;
+				var short_flag=0;
+				for(var j=0;j<argc-1;j++)
+					{
+						if(format[j]=='s')
 							{
-									fprintf(stderr,"Invalid Parameter Number!");
-									return "Invalid Parameter Number";
+								short_flag=1;
+								delim=argc==5?format[4]:'-';
+								break;
 							}
-					var delim=argc==5?format[5]:'-';
-					for(var j=0;j<3;j++)
+						else
+							delim=' ';
+					}
+				//console.log(delim);
+				for(var j=0;j<(argc-2);j++)
+					{
+						//console.log(j);
+						//console.log(argc-2);
+						//console.log(DATE);
+						switch(format[j])
 							{
-									switch(format[j])
-											{
-													case 'y':
-															DATE+=format[4]=='s'?this.year.substr(2):this.year;
-															j!=3?DATE+=delim:0;
-															break;
-													case 'm':
-															DATE+=this.month;
-															j!=3?DATE+=delim:0;
-															break;
-													case 'd':
-															DATE+=this.day;
-															j!=3?DATE+=delim:0;
-															break;
-											}
+								case 'y':
+									DATE+=short_flag?this.year.substring(0,2):this.year;
+									j!=2?DATE+=delim:"";
+									break;
+								case 'm':
+									if(short_flag)
+											DATE+=this.month;
+									else
+											DATE+=this._months[this.month];
+									j!=2?DATE+=delim:"";
+									break;
+								case 'd':
+									DATE+=this.day;
+									j!=2?DATE+=delim:"";
+									break;
 							}
+					}
+				if(time_format=='m')
+					DATE+=" "+this.hour+this.minute;
+				else
+					DATE+=" "+this.hour+":"+this.minute;
 			return DATE;
 			}
 		_to_min()
@@ -123,12 +156,72 @@ class Time
 			}
 
 		min()
-				{
-				return this._to_min();
-				}
-			};
-
-var r=new Time();
-r.getTime();
-console.log(r);
-console.log(r.toString());
+			{
+			return this._to_min();
+			}
+		check_before_minutes(min)
+			{
+				var tmp=new Time();
+				tmp.getTime();
+				tmp_min=tmp.min();
+				this_min=this.min();
+				if(this_min+MIN>=tmp_min)
+					return 1;
+				else
+					return 0;
+			}
+		check_before_minutes(min)
+			{
+				var tmp=new Time();
+				tmp.getTime();
+				tmp_min=tmp.min();
+				this_min=this.min();
+				if(this_min+MIN>=tmp_min)
+					return 0;
+				else
+					return 1;
+			}
+		compare(comp)
+			{
+				if(typeof(comp)=='Time')
+					{
+						var neq=0;
+						if(this.weekday!=comp.weekday)
+							neq=1;
+						else if(this.day!=comp.day)
+							neq=1;
+						else if(this.month!=comp.month)
+							neq=1;
+						else if(this.year!=comp.year)
+							neq=1;
+						else if(this.hour!=comp.hour)
+							neq=1;
+						else if(this.minute!=comp.minute)
+							neq=1;
+						else if(this.second!=comp.second)
+							neq=1;
+						if(neq==1)
+							{
+								if(this.min()>comp.min())
+									return 1;
+								else
+									return -1;
+							}
+						else
+							return 0;
+							
+					}
+				else if(typeof(comp)=='object')
+					throw new Error("Object is not of type Time. Refusing to compare!");
+				else
+					{
+						if(this.min()==comp)
+							return 0;
+						else if(this.min()>comp)
+							return 1;
+						else 
+							return -1;
+					}
+			return 1;
+			}
+		};
