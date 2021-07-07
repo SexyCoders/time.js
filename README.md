@@ -82,6 +82,6 @@ This library is considered mature since all the possible features have been cove
 
 ### We will happily accept maintenance merges <b>AND new features</b> if they expand the functionality of the library.  
 
-### We are also looking for translations of the documentation in other languages!!  
+### We are also looking for translations to other languages (documentation or code)!!  
 
 Please contact us <a href="https://gitlab.com/dianshane">here</a>.
