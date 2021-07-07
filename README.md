@@ -2,9 +2,10 @@
 
 Time.js is a powerful time object library for Javascript.
 
-This library follows the stable branch of our libtime.cc library!
+This library follows the stable branch of our libtime.cc library!  
 All changes are made directly to the master branch since debug and dev has been done in the libtime.cc development branches.  
 
+:information_source: This branch, as well as all packages published on npm are stable as far as we know!
 
 ## Why?
 Time.js is modeled after its older brother, Time.cc, a exact copy of this library but for C/C++.
