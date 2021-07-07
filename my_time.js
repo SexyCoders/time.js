@@ -1,4 +1,4 @@
-export class Time
+class Time
 	{
 		constructor()
 			{
@@ -135,7 +135,7 @@ export class Time
 									if(short_flag)
 											DATE+=this.month;
 									else
-											DATE+=this._months[this.month];
+											DATE+=this._months[this.month-1];
 									j!=2?DATE+=delim:"";
 									break;
 								case 'd':
@@ -225,3 +225,8 @@ export class Time
 			return 1;
 			}
 		};
+
+//var t=new Time();
+//t.fromString("1;23;12;11;13;24;34;");
+//console.log(t.toStringf("dmyl-","c",1));
+
