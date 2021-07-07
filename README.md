@@ -1,4 +1,4 @@
-# Time.cc
+# Time.js
 
 Time.js is a powerful time object library for Javascript.
 
@@ -17,8 +17,8 @@ This makes it able to:
 - get current time using the tm struct
 - load time from string (very usefull when working with databases/files)
 - store time to string (for later loading)
-- print time in any given format (returns string object in the requested format)
-- compare time objects with each other (boolean comp for if statements or loops)
+- print time in any given format (returns string in the requested format)
+- compare time objects with each other or with numeric values (returns -1 if lower,0 if equal and 1 if higher)
 
 # Installation
 
@@ -32,16 +32,15 @@ The library provides three main function types:
 
 ## time functions
 - getTime -> a very friendly wraper to the Date() object that gets current time and stores it in the Time object
-- fromString -> loads a Time object from a string (semicolon seperation OBLIGATORY see store())
+- fromString -> loads a Time object from a string (semicolon seperation OBLIGATORY)
 
 ## operators
 Time.js provides all mathematical operators and ports them to the Time object.  
 You can compare add, substract etc between Time objects freely.  
 
 ## formated output functions
-The "toStringf" function familly provides an easy way to create a string with your desired formatting for use in your application.
 
-There are functions to only print date, time, weekday etc but also the generic "toStringf" that prints anything in any format.  
+The almighty "toStringf" prints anything in any format.  
 
 the formatting is easy: 
 
@@ -83,6 +82,6 @@ This library is considered mature since all the possible features have been cove
 
 ### We will happily accept maintenance merges <b>AND new features</b> if they expand the functionality of the library.  
 
-### We are also looking for translations of the documentation in other languages!!  
+### We are also looking for translations to other languages (documentation or code)!!  
 
 Please contact us <a href="https://gitlab.com/dianshane">here</a>.
