@@ -165,18 +165,18 @@ export class Time
 				tmp.getTime();
 				tmp_min=tmp.min();
 				this_min=this.min();
-				if(this_min+MIN>=tmp_min)
+				if(this_min+min>=tmp_min)
 					return 1;
 				else
 					return 0;
 			}
-		check_before_minutes(min)
+		check_after_minutes(min)
 			{
 				var tmp=new Time();
 				tmp.getTime();
 				tmp_min=tmp.min();
 				this_min=this.min();
-				if(this_min+MIN>=tmp_min)
+				if(this_min+min<tmp_min)
 					return 0;
 				else
 					return 1;
